@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include "TutorialConfig.h"
 
 using std::endl;
 using std::cout;
@@ -7,6 +8,7 @@ using std::cout;
 int main(int argc, char* argv[])
 {
     cout << "Usage: "<< argv[0]  << " number" << endl;
+    cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "." << Tutorial_VERSION_MINOR << endl;
 
     double inputValue;
     if(argc == 2)

@@ -4,4 +4,25 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(Tutorial)
 
+# 添加变量，分别表示主版本号和副版本号
+# set project version
+set(Tutorial_VERSION_MAJOR 1)
+set(Tutorial_VERSION_MINOR 0)
+
+# 下面是添加配置文件，在项目的源代码目录中添加TutorialConfig.h.in文件，
+# 这里面填写我们的配置，在项目的可执行目录生成一个对应的头文件，实际上把
+# 配置文件中的配置变量生成到这个头文件中，然后项目的源代码可以包含这个头
+# 文件，这样就能使用在CMakeLists文件的配置了。
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file(
+        "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
+        "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+)
+
+# 把二进制目标也加到include目录中，因为生成的TutorialConfig.h文件是在那个目录中
+# add the binary tree to the search path for include files
+# so that we will find TutorialConfig.h
+include_directories("${PROJECT_BINARY_DIR}")
+
 add_executable(Tutorial main.cpp)
