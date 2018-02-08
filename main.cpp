@@ -1,7 +1,9 @@
 #include <iostream>
 #include <cmath>
 #include "TutorialConfig.h"
+#ifdef USE_MYMATH
 #include "MathFunctions/MathFunctions.h"
+#endif
 
 using std::endl;
 using std::cout;
@@ -21,7 +23,11 @@ int main(int argc, char* argv[])
         inputValue = 4;
     }
 
+#ifdef USE_MYMATH
     double outputValue = mysqrt(inputValue);
+#else
+    double outputValue = sqrt(inputValue);
+#endif
     cout << "The square root of "<<  inputValue << " is " << outputValue << endl;
     return 0;
 }

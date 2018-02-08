@@ -4,6 +4,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 project(Tutorial)
 
+# should we use our own math functions
+option(USE_MYMATH "Use tutorial provided math implementation" ON)
+
 # 添加变量，分别表示主版本号和副版本号
 # set project version
 set(Tutorial_VERSION_MAJOR 1)
@@ -25,11 +28,14 @@ configure_file(
 # so that we will find TutorialConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
-# 添加自定义的函数库目录
-include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
-# 编译函数库
-add_subdirectory (MathFunctions)
+# add the MathFunctions library?
+#
+if (USE_MYMATH)
+    include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+    add_subdirectory (MathFunctions)
+    set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+endif (USE_MYMATH)
 
 
 add_executable(Tutorial main.cpp)
-target_link_libraries (Tutorial MathFunctions)
+target_link_libraries (Tutorial  ${EXTRA_LIBS})
