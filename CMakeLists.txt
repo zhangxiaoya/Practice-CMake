@@ -25,4 +25,11 @@ configure_file(
 # so that we will find TutorialConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
+# 添加自定义的函数库目录
+include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+# 编译函数库
+add_subdirectory (MathFunctions)
+
+
 add_executable(Tutorial main.cpp)
+target_link_libraries (Tutorial MathFunctions)
