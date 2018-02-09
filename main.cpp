@@ -10,8 +10,11 @@ using std::cout;
 
 int main(int argc, char* argv[])
 {
-    cout << "Usage: "<< argv[0]  << " number" << endl;
-    cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "." << Tutorial_VERSION_MINOR << endl;
+    if(argc < 2)
+    {
+        cout << "Usage: " << argv[0] << " number" << endl;
+        cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "." << Tutorial_VERSION_MINOR << endl;
+    }
 
     double inputValue;
     if(argc == 2)
